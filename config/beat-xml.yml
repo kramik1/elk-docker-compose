@@ -1,0 +1,13 @@
+filebeat.inputs:
+  - type: log
+    paths:
+      - /var/log/data.log*
+    multiline:
+      pattern: "^<m:Message"
+      negate: true
+      match: after
+console:
+  pretty: true
+
+output.logstash:
+  hosts: 'logstash01:5044'

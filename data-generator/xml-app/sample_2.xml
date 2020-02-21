@@ -1,0 +1,25 @@
+<m:Message xmlns:m="http://abc.io">
+    <m:Header>
+        <m:SourceSystemName>ABC System</m:SourceSystemName>
+        <m:MessageKey>LOCATION-REPORT</m:MessageKey>
+        <m:RadioID>2104789669</m:RadioID>
+        <m:UnitID>201</m:UnitID>
+        <m:UnitName>Person iPhone</m:UnitName>
+        <m:Speed>0</m:Speed>
+        <m:Bearing>0</m:Bearing>
+        <m:InfoTime>1/2/2019 1:22:49 PM</m:InfoTime>
+        <m:Latitude>22.9647893</m:Latitude>
+        <m:Longitude>-56.5198056</m:Longitude>
+        <m:Radius>2.17515377576032</m:Radius>
+        <m:Altitude>127</m:Altitude>
+        <m:AltitudeAccuracy>0</m:AltitudeAccuracy>
+        <m:Processing>BACKGROUND</m:Processing>
+        <m:Sensors>Device:Apple iPhone Phone (Name:Person iPhone X Id:XXXXXX); OS:iOS 12.1.2; Client:1.0.66; Battery:92% Discharging via Battery; Network:WiFi</m:Sensors>
+        <m:RefreshRate>30</m:RefreshRate>
+        <m:Description>Person's House, In Office</m:Description>
+        <m:Source>BEACON</m:Source>
+        <m:MotionType>Stationary</m:MotionType>
+        <m:ControlValue>23216627</m:ControlValue>
+        <m:SubjectSystemName>HUB</m:SubjectSystemName>
+    </m:Header>
+</m:Message>

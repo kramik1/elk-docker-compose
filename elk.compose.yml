@@ -1,0 +1,62 @@
+version: '3.7'
+services:
+  kibana01:
+    image: docker.elastic.co/kibana/kibana:7.1.0
+    ports:
+      - "5601:5601"
+    volumes:
+      - './config/kibana.yml:/usr/share/kibana/config/kibana.yml'
+
+  logstash01:
+    image: docker.elastic.co/logstash/logstash:7.1.0
+    ports:
+      - "5044:5044"
+    volumes:
+      - './config/logstash-xml.yml:/usr/share/logstash/config/logstash.yml'
+      - './config/logstash-xml.conf:/usr/share/logstash/pipeline/logstash.conf'
+
+  es01:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.1.0
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+     - './config/elastic.yml:/usr/share/elasticsearch/config/elasticsearch.yml'
+     - './elastic-volume/data:/usr/share/elasticsearch/data'
+     - './elastic-volume/logs:/usr/share/elasticsearch/logs'
+    environment:
+# list of docker compose environment variables
+# https://www.elastic.co/guide/en/kibana/5.3/_configuring_kibana_on_docker.html
+     - ELASTIC_PASSWORD=changeme
+
+  data-json:
+    image: test/simulate-data-json:latest
+    volumes:
+      - gen_json_data:/app/log
+
+  data-xml:
+    image: test/simulate-data-xml:latest
+    volumes:
+      - gen_xml_data:/app/log
+
+  beats-json:
+    image: docker.elastic.co/beats/filebeat:7.1.0
+    volumes:
+      - './config/beat-json.yml:/usr/share/filebeat/filebeat.yml'
+      - gen_json_data:/var/log
+
+  beats-xml:
+    image: docker.elastic.co/beats/filebeat:7.1.0
+    volumes:
+      - './config/beat-xml.yml:/usr/share/filebeat/filebeat.yml'
+      - gen_xml_data:/var/log
+
+#  elastichq:
+#    image: docker.elastic.co/elastichq/elasticsearch-hq
+#    container_name: elastichq
+#    ports:
+#      - "5000:5000"
+ 
+volumes:
+  gen_json_data:
+  gen_xml_data:
